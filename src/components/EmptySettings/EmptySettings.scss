@@ -1,0 +1,17 @@
+.empty-settings {
+  text-align: center;
+
+  &_message {
+    width: 204px;
+    font-size: 13px;
+    margin: 0 auto;
+  }
+
+  &_icon {
+    margin-bottom: 32px;
+  }
+
+  &_message {
+    margin-bottom: 24px;
+  }
+}

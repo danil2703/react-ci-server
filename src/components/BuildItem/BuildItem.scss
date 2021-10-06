@@ -1,0 +1,93 @@
+.build {
+  width: 100%;
+  height: 68px;
+  padding: 12px 24px;
+  display: flex;
+  box-shadow: 0px 0px 1px rgba(67, 68, 69, 0.3), 0px 1px 1px rgba(67, 68, 69, 0.3);
+  border-radius: 6px;
+  text-align: left;
+
+  &_success {
+    &_number {
+      color: #00b341;
+    }
+
+    &_error {
+      color: #ff3333;
+    }
+
+    &_pending {
+      color: #ff9a00;
+    }
+  }
+
+  &_number {
+    font-size: 18px;
+    margin-right: 4px;
+    font-weight: 500;
+  }
+
+  &_title {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  &_branch {
+    margin: 0 4px;
+  }
+
+  &_hash {
+    margin-right: 8px;
+    color: #595959;
+  }
+
+  &_author {
+    margin: 0 5px;
+  }
+
+  &_date {
+    margin-bottom: 12px;
+  }
+
+  &_date,
+  &_time {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #595959;
+
+    svg {
+      margin-right: 5px;
+    }
+  }
+
+  &_info-top-content {
+    margin-bottom: 8px;
+  }
+
+  &_info-bottom-content {
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+  }
+
+  &_status-container {
+    margin-right: 9px;
+  }
+
+  &_info-container {
+    margin-right: auto;
+  }
+
+  &_date-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &_info-container,
+  &_date-container {
+    svg {
+      fill: #b3b3b3;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.footer {
+  background-color: #f0f2f3;
+
+  &_container {
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+  }
+
+  &_nav {
+    display: flex;
+  }
+
+  &_ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &_nav-item {
+    margin-right: 12px;
+  }
+
+  &_link {
+    text-decoration: none;
+    color: #7f8285;
+    font-size: 13px;
+
+    &:hover {
+      color: #e00000;
+    }
+  }
+
+  &_copirate {
+    color: #7f8285;
+    font-size: 13px;
+  }
+}
