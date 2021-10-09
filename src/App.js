@@ -1,16 +1,31 @@
 import './App.scss';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import BuildItem from './components/BuildItem/BuildItem';
-import TextField from './components/TextField/TextField';
+import { Switch, Route, useHistory } from 'react-router-dom';
+import { Footer } from './components/Footer/Footer';
+import { StartPage } from './pages/StartPage/StartPage';
+import { Settings } from './pages/Settings/Settings';
+import { BuildHistory } from './pages/BuildHistory/BuildHistory';
 
 function App() {
+  const history = useHistory();
+
+  if (!localStorage.getItem('settings')) {
+    history.push('/no-settings');
+  }
+
   return (
     <div className="App">
-      <Header />
       <div className="content">
-        <BuildItem />
-        <TextField id="t" label="Text Field" placeholder="test" required />
+        <Switch>
+          <Route path="/settings">
+            <Settings />
+          </Route>
+          <Route path="/no-settings">
+            <StartPage />
+          </Route>
+          <Route path="/">
+            <BuildHistory />
+          </Route>
+        </Switch>
       </div>
       <Footer />
     </div>

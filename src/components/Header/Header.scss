@@ -1,5 +1,11 @@
 .header {
-  &__container {
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  top: 0;
+  left: 0;
+
+  &_container {
     min-height: 48px;
     height: 100%;
     display: flex;
@@ -8,10 +14,10 @@
     margin: 0 auto;
   }
 
-  &__link {
+  &_link {
     color: #7f8285;
     font-weight: 500;
     font-size: 24px;
-    text-decoration: none;
+    margin: 0;
   }
 }

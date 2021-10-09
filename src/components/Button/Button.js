@@ -1,15 +1,27 @@
+import React from 'react';
 import './Button.scss';
 
-function Button({ label = '', color = 'primary', icon = '', size = 'big' }) {
+export const Button = React.memo((props) => {
+  const {
+    color = 'primary',
+    withIcon = false,
+    size = 'big',
+    className = '',
+    disabled = false,
+    children,
+    onClick,
+  } = props;
+
   return (
     <button
-      className={`button button_color_${color} button_size_${size} ${icon && 'button_with-icon'}`}
+      className={`button button_color_${color} button_size_${size} ${
+        withIcon && 'button_with-icon'
+      } ${className}`}
+      onClick={onClick}
+      disabled={disabled}
       type="button"
     >
-      {icon && <img className="button_icon" src={icon} />}
-      {label}
+      {children}
     </button>
   );
-}
-
-export default Button;
+});

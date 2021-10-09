@@ -8,16 +8,20 @@
   text-align: left;
 
   &_success {
-    &_number {
+    .build_number {
       color: #00b341;
     }
+  }
 
-    &_error {
-      color: #ff3333;
-    }
-
-    &_pending {
+  &_pending {
+    .build_number {
       color: #ff9a00;
+    }
+  }
+
+  &_error {
+    .build_number {
+      color: #ff3333;
     }
   }
 

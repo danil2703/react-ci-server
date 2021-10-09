@@ -40,3 +40,29 @@
     color: #ff3333;
   }
 }
+
+.text-field_number {
+  .text-field {
+    &_label {
+      display: inline;
+    }
+
+    &_input {
+      width: 52px;
+      margin: 0 8px;
+      -moz-appearance: textfield;
+      text-align: right;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+
+    &_minutes {
+      font-size: 13px;
+      color: #434445;
+    }
+  }
+}
