@@ -1,12 +1,18 @@
 import './Settings.scss';
 import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { useDispatch } from 'react-redux';
 import { TextField } from '../../components/TextField/TextField';
 import { Button } from '../../components/Button/Button';
 import { ReactComponent as Loader } from '../../assets/icons/loader.svg';
+import { saveSettingAction } from '../../state/actions/index';
 
 export const Settings = React.memo(({ showError, setRepository }) => {
   const history = useHistory();
+
+  const dispatch = useDispatch();
+  const saveSetting = bindActionCreators(saveSettingAction, dispatch);
 
   const [formState, setFormState] = useState({
     repository: '',
@@ -44,6 +50,7 @@ export const Settings = React.memo(({ showError, setRepository }) => {
           showError({ isError: true, title: 'Error', text: 'Wrong branch' });
         } else {
           localStorage.setItem('settings', JSON.stringify(formState));
+          saveSetting(formState);
           setRepository(formState.repository);
           history.push('/');
         }
