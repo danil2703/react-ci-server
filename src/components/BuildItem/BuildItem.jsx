@@ -1,4 +1,6 @@
 import './BuildItem.scss';
+import moment from 'moment';
+import 'moment/locale/ru';
 import React from 'react';
 import { ReactComponent as SuccessIcon } from '../../assets/icons/status-success.svg';
 import { ReactComponent as ErrorIcon } from '../../assets/icons/status-error.svg';
@@ -21,12 +23,14 @@ export const BuildItem = React.memo((props) => {
       <div className="build_info-container">
         <div className="build_info-top-content">
           <span className="build_number">#{info.number}</span>
-          <span className="build_title">add documentation for postgres scaler</span>
+          <span className="build_title">{info.title}</span>
         </div>
         <div className="build_info-bottom-content">
-          <BranchIcon />
-          <span className="build_branch">{info.branch}</span>
-          <span className="build_hash">{info.hash}</span>
+          <span className="build_branch-container">
+            <BranchIcon />
+            <span className="build_branch">{info.branch}</span>
+            <span className="build_hash">{info.hash}</span>
+          </span>
           <AuthorIcon />
           <span className="build_author">{info.author}</span>
         </div>
@@ -34,11 +38,11 @@ export const BuildItem = React.memo((props) => {
       <div className="build_date-container">
         <span className="build_date">
           <CalendarIcon />
-          {info.date}
+          {moment(info.date).format('D MMM h:mm')}
         </span>
         <span className="build_time">
           <ClockIcon />
-          {info.time}
+          {moment(info.time).format('h [ч] m [мин]')}
         </span>
       </div>
     </div>

@@ -1,6 +1,4 @@
 .footer {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   background-color: #f0f2f3;
 
@@ -40,5 +38,25 @@
   &_copirate {
     color: #7f8285;
     font-size: 13px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .footer {
+    height: 68px;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    &_container {
+      width: 100%;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &_nav-item {
+      margin-bottom: 8px;
+    }
   }
 }

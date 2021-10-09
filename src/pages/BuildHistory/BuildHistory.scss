@@ -1,7 +1,19 @@
 .history {
-  margin-top: 8px;
+  text-align: left;
 
   &_item {
     margin-bottom: 8px;
+  }
+
+  &_show-more {
+    margin-bottom: 14px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .history {
+    &_show-more {
+      width: 100%;
+    }
   }
 }

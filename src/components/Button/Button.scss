@@ -1,20 +1,27 @@
 @import url('https://yastatic.net/s3/frontend/yandex-font/v0.0.2/browser.css');
 
 .button {
-  padding: 0 20px;
-
+  padding: 11px 20px;
+  display: inline-block;
   font-size: 13px;
   border-radius: 4px;
   border: 0;
   cursor: pointer;
+  color: black;
+  text-decoration: none;
 
   &_size {
-    &_big {
+    &_lg {
       height: 36px;
     }
 
-    &_medium {
+    &_md {
       height: 28px;
+    }
+
+    &_sm {
+      height: 28px;
+      width: 28px;
     }
   }
 
@@ -38,7 +45,9 @@
     }
   }
 
-  &:disabled {
+  &:disabled,
+  &_link.disabled {
+    pointer-events: none;
     background: #f2f2f2;
     color: #b8b8b8;
     cursor: default;
@@ -48,11 +57,11 @@
     width: 12px;
     height: 12px;
     position: relative;
-    top: 1px;
+    top: 2px;
     margin-right: 5px;
   }
 
   &_with-icon {
-    padding: 0px 13px 0px 8px;
+    padding: 6px 13px 6px 8px;
   }
 }

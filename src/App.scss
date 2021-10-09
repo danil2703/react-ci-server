@@ -8,7 +8,36 @@
 }
 
 .content {
-  width: 824px;
-  height: calc(100vh - 88px);
-  margin: 56px auto 0 auto;
+  min-height: calc(100vh - 88px);
+  margin: 8px auto 0 auto;
+}
+
+.content,
+.container {
+  width: 1000px;
+}
+
+@media screen and (max-width: 1200px) {
+  .content,
+  .container {
+    width: 824px;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .content,
+  .container {
+    max-width: 824px;
+    width: 100%;
+  }
+  .container {
+    padding: 0 16px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .content,
+  .container {
+    width: 100%;
+  }
 }

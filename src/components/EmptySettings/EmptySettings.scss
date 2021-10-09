@@ -1,6 +1,6 @@
 .empty-settings {
   text-align: center;
-  height: 100%;
+  min-height: calc(100vh - 88px);
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -1,9 +1,11 @@
 .header {
-  position: fixed;
   width: 100%;
   background-color: white;
-  top: 0;
-  left: 0;
+
+  &_repository {
+    font-size: 24px;
+    margin: 0;
+  }
 
   &_container {
     min-height: 48px;
@@ -19,5 +21,33 @@
     font-weight: 500;
     font-size: 24px;
     margin: 0;
+  }
+
+  &_run-build {
+    margin-right: 8px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    &_container {
+      min-height: 52px;
+    }
+
+    &_btn {
+      width: 28px;
+      height: 28px;
+      font-size: 0;
+    }
+
+    &_button-container {
+      display: flex;
+    }
+
+    &_run-build {
+      svg {
+        top: 0px;
+      }
+    }
   }
 }

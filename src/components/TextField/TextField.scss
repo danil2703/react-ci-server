@@ -39,6 +39,10 @@
   &_reqire-mark {
     color: #ff3333;
   }
+
+  &_reset.disabled {
+    pointer-events: none;
+  }
 }
 
 .text-field_number {

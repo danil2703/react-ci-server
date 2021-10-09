@@ -1,15 +1,14 @@
 import './Settings.scss';
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { TextField } from '../../components/TextField/TextField';
 import { Button } from '../../components/Button/Button';
-import { Header } from '../../components/Header/Header';
 import { ReactComponent as Loader } from '../../assets/icons/loader.svg';
 
-export const Settings = React.memo(() => {
+export const Settings = React.memo(({ showError, setRepository }) => {
   const history = useHistory();
 
-  const [state, setState] = useState({
+  const [formState, setFormState] = useState({
     repository: '',
     buildCommand: '',
     mainBranch: '',
@@ -18,45 +17,45 @@ export const Settings = React.memo(() => {
 
   const [isLoading, setLoadingState] = useState(false);
 
-  const checkIsValidGithubRepos = (repos) => Promise.resolve(repos.split('/').length === 2);
-  const checkIsValidMainBranch = (b) => Promise.resolve(/^(\w|\d|[-_\/])+$/.test(b));
+  const checkIsValidGithubRepos = useCallback((repos) => Promise.resolve(repos.split('/').length === 2), []);
+  const checkIsValidMainBranch = useCallback((b) => Promise.resolve(/^(\w|\d|[-_\/])+$/.test(b)), []);
   const delayPromise = () => new Promise((resolve) => setTimeout(resolve, 5000));
 
-  const onChange = (e) => {
-    const { value } = e.target;
-    setState({
-      ...state,
-      [e.target.name]: value,
-    });
-  };
+  const onChange = useCallback(
+    (e) => {
+      const { value } = e.target;
+      setFormState({
+        ...formState,
+        [e.target.name]: value,
+      });
+    },
+    [formState]
+  );
 
-  const onSubmit = () => {
+  const onSubmit = useCallback(() => {
     setLoadingState(true);
 
-    Promise.all([
-      checkIsValidGithubRepos(state.repository),
-      checkIsValidMainBranch(state.mainBranch),
-      delayPromise(),
-    ]).then((data) => {
-      if (data[0] && data[1]) {
-        localStorage.setItem('settings', JSON.stringify(state));
-      } else {
-        console.log('bad');
+    Promise.all([checkIsValidGithubRepos(formState.repository), checkIsValidMainBranch(formState.mainBranch), delayPromise()]).then(
+      ([validRepository, validBranch]) => {
+        setLoadingState(false);
+        if (!validRepository) {
+          showError({ isError: true, title: 'Error', text: 'Wrong repository name' });
+        } else if (!validBranch) {
+          showError({ isError: true, title: 'Error', text: 'Wrong branch' });
+        } else {
+          localStorage.setItem('settings', JSON.stringify(formState));
+          setRepository(formState.repository);
+          history.push('/');
+        }
       }
-      setLoadingState(false);
-    });
-  };
+    );
+  }, [formState]);
 
   return (
     <>
-      <Header>
-        <h1 className="header_link">School CI server</h1>
-      </Header>
-      <div className="settings">
+      <div className="settings container">
         <h3 className="settings_title">Settings</h3>
-        <p className="settings_paragraph">
-          Configure repository connection and synchronization settings.
-        </p>
+        <p className="settings_paragraph">Configure repository connection and synchronization settings.</p>
         <form>
           <TextField
             onChange={onChange}
@@ -65,6 +64,7 @@ export const Settings = React.memo(() => {
             name="repository"
             className="settings_input"
             label="GitHub repository"
+            disabled={isLoading}
             required
           />
           <TextField
@@ -74,6 +74,7 @@ export const Settings = React.memo(() => {
             name="buildCommand"
             className="settings_input"
             label="Build command"
+            disabled={isLoading}
             required
           />
           <TextField
@@ -83,6 +84,7 @@ export const Settings = React.memo(() => {
             name="mainBranch"
             className="settings_input"
             label="Main branch"
+            disabled={isLoading}
             required
           />
           <TextField
@@ -93,15 +95,16 @@ export const Settings = React.memo(() => {
             className="settings_number"
             label="Synchronize every"
             unit="minutes"
+            disabled={isLoading}
           />
           <Button
             onClick={onSubmit}
-            disabled={!state.repository || !state.buildCommand || !state.mainBranch || isLoading}
+            disabled={!formState.repository || !formState.buildCommand || !formState.mainBranch || isLoading}
             className="settings_button"
           >
             {isLoading ? <Loader /> : 'Save'}
           </Button>
-          <Button onClick={() => history.push('/')} color="secondary">
+          <Button type="link" to="/" color="secondary" disabled={isLoading}>
             Cancel
           </Button>
         </form>
