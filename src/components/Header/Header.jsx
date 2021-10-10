@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './Header.scss';
 import { Switch, Route } from 'react-router-dom';
 import { Button } from '../Button/Button';
@@ -9,6 +9,10 @@ import {} from 'react/cjs/react.development';
 export const Header = React.memo((props) => {
   const { className = '', openModal, repository = '' } = props;
 
+  const onClickHangler = useCallback(() =>
+    openModal({ title: 'New build', text: 'Enter the commit hash which you want to build.', type: 'form' }, [openModal])
+  );
+
   return (
     <header className={`header ${className}`}>
       <div className="header_container container">
@@ -16,13 +20,7 @@ export const Header = React.memo((props) => {
           <Route exact path="/">
             <h1 className="header_repository">{repository}</h1>
             <div className="header_button-container">
-              <Button
-                className="header_btn header_run-build"
-                onClick={() => openModal({ title: 'New build', text: 'Enter the commit hash which you want to build.' })}
-                withIcon="true"
-                size="md"
-                color="secondary"
-              >
+              <Button className="header_btn header_run-build" onClick={onClickHangler} withIcon="true" size="md" color="secondary">
                 <RunIcon />
                 Run build
               </Button>

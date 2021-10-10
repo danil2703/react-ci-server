@@ -1,5 +1,5 @@
 import './TextField.scss';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ReactComponent as ResetIcon } from '../../assets/icons/reset.svg';
 
 export const TextField = React.memo((props) => {
@@ -14,8 +14,12 @@ export const TextField = React.memo((props) => {
     disabled = false,
     ...inputProps
   } = props;
-
   const [value, setValue] = useState('');
+
+  useEffect(() => {
+    setValue(props.value || '');
+  }, []);
+
   const clearInput = useCallback(() => setValue(''), []);
 
   const localOnChangeHandler = useCallback(

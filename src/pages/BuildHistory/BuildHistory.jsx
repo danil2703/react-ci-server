@@ -1,6 +1,7 @@
 import './BuildHistory.scss';
 import { Redirect } from 'react-router-dom';
 import React, { useState, useCallback } from 'react';
+import { useSelector } from 'react-redux';
 import { BuildItem } from '../../components/BuildItem/BuildItem';
 import { Button } from '../../components/Button/Button';
 import { buildData, moreBuildData } from './MockData';
@@ -14,7 +15,9 @@ export const BuildHistory = React.memo(() => {
     setMoreButtonState(false);
   }, [buildItems, moreBuildData]);
 
-  if (!localStorage.getItem('settings')) {
+  const settings = useSelector((state) => state.settings);
+
+  if (!settings.repository) {
     return <Redirect to={{ pathname: '/no-settings' }} />;
   }
 

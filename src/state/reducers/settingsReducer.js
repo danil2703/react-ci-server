@@ -1,7 +1,6 @@
 const reducer = (state = { repository: '', buildCommand: '', mainBranch: '', synchro: '' }, action) => {
-  console.log(action);
   switch (action.type) {
-    case 'save':
+    case 'SAVE_SETTINGS':
       return action.settings;
     default:
       return state;

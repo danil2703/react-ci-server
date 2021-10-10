@@ -1,6 +1,8 @@
 import './App.scss';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { Switch, Route } from 'react-router-dom';
+import { bindActionCreators } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Footer } from './components/Footer/Footer';
 import { StartPage } from './pages/StartPage/StartPage';
 import { Settings } from './pages/Settings/Settings';
@@ -9,44 +11,31 @@ import { Header } from './components/Header/Header';
 import { Modal } from './components/Modal/Modal';
 import { TextField } from './components/TextField/TextField';
 import { Button } from './components/Button/Button';
+import { modalShow, modalClose } from './state/actions/modalActions';
 
 export const App = React.memo(() => {
-  const [modalData, setModal] = useState({ isVisible: false, isError: false, title: '', text: '', hash: '' });
-  const [repository, setRepositoryState] = useState(JSON.parse(localStorage.getItem('settings'))?.repository || '');
+  const settings = useSelector((state) => state.settings);
 
-  const setRepository = useCallback(
-    (respository) => {
-      setRepositoryState(respository);
-    },
-    [repository]
-  );
+  const dispatch = useDispatch();
+  const modalShowDispatch = bindActionCreators(modalShow, dispatch);
+  const modalCloseDispatch = bindActionCreators(modalClose, dispatch);
 
   const onClose = useCallback(() => {
-    setModal({ isVisible: false, isError: false, title: '', text: '' });
-  }, [modalData]);
+    modalCloseDispatch();
+  }, []);
 
-  const openModal = useCallback(
-    ({ isError, title, text }) => {
-      setModal({ isVisible: true, isError, title, text });
-    },
-    [modalData]
-  );
-
-  const onChange = (e) => {
-    const { value } = e.target;
-    setModal({
-      ...modalData,
-      [e.target.name]: value,
-    });
-  };
+  const openModal = useCallback(({ type, title, text }) => {
+    modalShowDispatch({ open: true, title, type, text });
+  });
 
   return (
     <div className="App">
-      <Header repository={repository} openModal={openModal} />
+      <Header repository={settings.repository} openModal={openModal} />
+
       <div className="content">
         <Switch>
           <Route path="/settings">
-            <Settings setRepository={setRepository} showError={openModal} />
+            <Settings showError={openModal} />
           </Route>
           <Route path="/no-settings">
             <StartPage />
@@ -56,25 +45,19 @@ export const App = React.memo(() => {
           </Route>
         </Switch>
       </div>
+
       <Footer />
-      <Modal visible={modalData.isVisible} title={modalData.title} text={modalData.text} onClose={onClose}>
-        {modalData.isError ? (
-          <Button onClick={onClose} color="secondary">
-            Ok
+
+      <Modal onClose={onClose}>
+        <TextField name="hash" className="modal_input" placeholder="Commit hash" />
+        <div>
+          <Button onClick={onClose} className="modal_submit">
+            Run build
           </Button>
-        ) : (
-          <>
-            <TextField onChange={onChange} name="hash" className="modal_input" placeholder="Commit hash" />
-            <div>
-              <Button disabled={!modalData.hash} onClick={onClose} className="modal_submit">
-                Run build
-              </Button>
-              <Button onClick={onClose} color="secondary">
-                Cancel
-              </Button>
-            </div>
-          </>
-        )}
+          <Button onClick={onClose} color="secondary">
+            Cancel
+          </Button>
+        </div>
       </Modal>
     </div>
   );

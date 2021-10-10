@@ -1,18 +1,18 @@
 import './Settings.scss';
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { TextField } from '../../components/TextField/TextField';
 import { Button } from '../../components/Button/Button';
 import { ReactComponent as Loader } from '../../assets/icons/loader.svg';
-import { saveSettingAction } from '../../state/actions/index';
+import { settingsSaveAction } from '../../state/actions/index';
 
-export const Settings = React.memo(({ showError, setRepository }) => {
+export const Settings = React.memo(({ showError }) => {
   const history = useHistory();
 
   const dispatch = useDispatch();
-  const saveSetting = bindActionCreators(saveSettingAction, dispatch);
+  const dispatchSettings = bindActionCreators(settingsSaveAction, dispatch);
 
   const [formState, setFormState] = useState({
     repository: '',
@@ -22,6 +22,12 @@ export const Settings = React.memo(({ showError, setRepository }) => {
   });
 
   const [isLoading, setLoadingState] = useState(false);
+
+  const settings = useSelector((state) => state.settings);
+
+  useEffect(() => {
+    setFormState(settings);
+  }, [settings]);
 
   const checkIsValidGithubRepos = useCallback((repos) => Promise.resolve(repos.split('/').length === 2), []);
   const checkIsValidMainBranch = useCallback((b) => Promise.resolve(/^(\w|\d|[-_\/])+$/.test(b)), []);
@@ -45,13 +51,11 @@ export const Settings = React.memo(({ showError, setRepository }) => {
       ([validRepository, validBranch]) => {
         setLoadingState(false);
         if (!validRepository) {
-          showError({ isError: true, title: 'Error', text: 'Wrong repository name' });
+          showError({ type: 'error', title: 'Error', text: 'Wrong repository name. Enter username/repository.' });
         } else if (!validBranch) {
-          showError({ isError: true, title: 'Error', text: 'Wrong branch' });
+          showError({ type: 'error', title: 'Error', text: 'Wrong branch name.' });
         } else {
-          localStorage.setItem('settings', JSON.stringify(formState));
-          saveSetting(formState);
-          setRepository(formState.repository);
+          dispatchSettings(formState);
           history.push('/');
         }
       }
@@ -67,6 +71,7 @@ export const Settings = React.memo(({ showError, setRepository }) => {
           <TextField
             onChange={onChange}
             type="text"
+            value={formState.repository}
             placeholder="user-name/repo-name"
             name="repository"
             className="settings_input"
@@ -77,6 +82,7 @@ export const Settings = React.memo(({ showError, setRepository }) => {
           <TextField
             onChange={onChange}
             type="text"
+            value={formState.buildCommand}
             placeholder="npm run build"
             name="buildCommand"
             className="settings_input"
@@ -87,6 +93,7 @@ export const Settings = React.memo(({ showError, setRepository }) => {
           <TextField
             onChange={onChange}
             type="text"
+            value={formState.mainBranch}
             placeholder="main"
             name="mainBranch"
             className="settings_input"
@@ -97,6 +104,7 @@ export const Settings = React.memo(({ showError, setRepository }) => {
           <TextField
             onChange={onChange}
             type="number"
+            value={formState.synchro}
             name="synchro"
             placeholder="10"
             className="settings_number"
