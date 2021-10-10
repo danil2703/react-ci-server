@@ -46,7 +46,7 @@
   }
 
   &:disabled,
-  &_link.disabled {
+  &__link.disabled {
     pointer-events: none;
     background: #f2f2f2;
     color: #b8b8b8;

@@ -5,8 +5,8 @@ import { ReactComponent as ToolsIcon } from '../../assets/icons/tools.svg';
 
 export const EmptySettings = React.memo(() => (
   <div className="empty-settings">
-    <ToolsIcon className="empty-settings_icon" />
-    <div className="empty-settings_message">Configure repository connection and synchronization settings</div>
+    <ToolsIcon className="empty-settings__icon" />
+    <div className="empty-settings__message">Configure repository connection and synchronization settings</div>
     <Button type="link" to="/settings">
       Open setting
     </Button>

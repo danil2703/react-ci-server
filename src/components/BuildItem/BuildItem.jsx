@@ -15,32 +15,32 @@ export const BuildItem = React.memo((props) => {
 
   return (
     <div className={`build  build_${info.status} ${className}`}>
-      <div className="build_status-container">
+      <div className="build__status-container">
         {info.status === 'success' && <SuccessIcon />}
         {info.status === 'error' && <ErrorIcon />}
         {info.status === 'pending' && <PendingIcon />}
       </div>
-      <div className="build_info-container">
-        <div className="build_info-top-content">
-          <span className="build_number">#{info.number}</span>
-          <span className="build_title">{info.title}</span>
+      <div className="build__info-container">
+        <div className="build__info-top-content">
+          <span className="build__number">#{info.number}</span>
+          <span className="build__title">{info.title}</span>
         </div>
-        <div className="build_info-bottom-content">
-          <span className="build_branch-container">
+        <div className="build__info-bottom-content">
+          <span className="build__branch-container">
             <BranchIcon />
-            <span className="build_branch">{info.branch}</span>
-            <span className="build_hash">{info.hash}</span>
+            <span className="build__branch">{info.branch}</span>
+            <span className="build__hash">{info.hash}</span>
           </span>
           <AuthorIcon />
-          <span className="build_author">{info.author}</span>
+          <span className="build__author">{info.author}</span>
         </div>
       </div>
-      <div className="build_date-container">
-        <span className="build_date">
+      <div className="build__date-container">
+        <span className="build__date">
           <CalendarIcon />
           {moment(info.date).format('D MMM h:mm')}
         </span>
-        <span className="build_time">
+        <span className="build__time">
           <ClockIcon />
           {moment(info.time).format('h [ч] m [мин]')}
         </span>

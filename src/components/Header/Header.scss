@@ -2,12 +2,12 @@
   width: 100%;
   background-color: white;
 
-  &_repository {
+  &__repository {
     font-size: 24px;
     margin: 0;
   }
 
-  &_container {
+  &__container {
     min-height: 48px;
     height: 100%;
     display: flex;
@@ -16,35 +16,35 @@
     margin: 0 auto;
   }
 
-  &_link {
+  &__link {
     color: #7f8285;
     font-weight: 500;
     font-size: 24px;
     margin: 0;
   }
 
-  &_run-build {
+  &__run-build {
     margin-right: 8px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .header {
-    &_container {
+    &__container {
       min-height: 52px;
     }
 
-    &_btn {
+    &__btn {
       width: 28px;
       height: 28px;
       font-size: 0;
     }
 
-    &_button-container {
+    &__button-container {
       display: flex;
     }
 
-    &_run-build {
+    &__run-build {
       svg {
         top: 0px;
       }

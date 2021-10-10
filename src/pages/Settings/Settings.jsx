@@ -8,7 +8,7 @@ import { Button } from '../../components/Button/Button';
 import { ReactComponent as Loader } from '../../assets/icons/loader.svg';
 import { settingsSaveAction } from '../../state/actions/index';
 
-export const Settings = React.memo(({ showError }) => {
+export const Settings = React.memo(({ openModal }) => {
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -51,9 +51,9 @@ export const Settings = React.memo(({ showError }) => {
       ([validRepository, validBranch]) => {
         setLoadingState(false);
         if (!validRepository) {
-          showError({ type: 'error', title: 'Error', text: 'Wrong repository name. Enter username/repository.' });
+          openModal({ type: 'error', title: 'Error', text: 'Wrong repository name. Enter username/repository.' });
         } else if (!validBranch) {
-          showError({ type: 'error', title: 'Error', text: 'Wrong branch name.' });
+          openModal({ type: 'error', title: 'Error', text: 'Wrong branch name.' });
         } else {
           dispatchSettings(formState);
           history.push('/');
@@ -65,8 +65,8 @@ export const Settings = React.memo(({ showError }) => {
   return (
     <>
       <div className="settings container">
-        <h3 className="settings_title">Settings</h3>
-        <p className="settings_paragraph">Configure repository connection and synchronization settings.</p>
+        <h3 className="settings__title">Settings</h3>
+        <p className="settings__paragraph">Configure repository connection and synchronization settings.</p>
         <form>
           <TextField
             onChange={onChange}
@@ -74,7 +74,7 @@ export const Settings = React.memo(({ showError }) => {
             value={formState.repository}
             placeholder="user-name/repo-name"
             name="repository"
-            className="settings_input"
+            className="settings__input"
             label="GitHub repository"
             disabled={isLoading}
             required
@@ -85,7 +85,7 @@ export const Settings = React.memo(({ showError }) => {
             value={formState.buildCommand}
             placeholder="npm run build"
             name="buildCommand"
-            className="settings_input"
+            className="settings__input"
             label="Build command"
             disabled={isLoading}
             required
@@ -96,7 +96,7 @@ export const Settings = React.memo(({ showError }) => {
             value={formState.mainBranch}
             placeholder="main"
             name="mainBranch"
-            className="settings_input"
+            className="settings__input"
             label="Main branch"
             disabled={isLoading}
             required
@@ -107,7 +107,7 @@ export const Settings = React.memo(({ showError }) => {
             value={formState.synchro}
             name="synchro"
             placeholder="10"
-            className="settings_number"
+            className="settings__number"
             label="Synchronize every"
             unit="minutes"
             disabled={isLoading}
@@ -115,7 +115,7 @@ export const Settings = React.memo(({ showError }) => {
           <Button
             onClick={onSubmit}
             disabled={!formState.repository || !formState.buildCommand || !formState.mainBranch || isLoading}
-            className="settings_button"
+            className="settings__button"
           >
             {isLoading ? <Loader /> : 'Save'}
           </Button>

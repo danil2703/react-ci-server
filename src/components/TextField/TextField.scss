@@ -3,13 +3,13 @@
   text-align: left;
   position: relative;
 
-  &_label {
+  &__label {
     display: block;
     font-size: 13px;
     margin-bottom: 6px;
   }
 
-  &_input {
+  &__input {
     width: 100%;
     height: 36px;
     padding: 10px 13px;
@@ -29,29 +29,29 @@
     }
   }
 
-  &_reset {
+  &__reset {
     cursor: pointer;
     position: absolute;
     right: 10px;
     bottom: 10px;
   }
 
-  &_reqire-mark {
+  &__reqire-mark {
     color: #ff3333;
   }
 
-  &_reset.disabled {
+  &__reset.disabled {
     pointer-events: none;
   }
 }
 
-.text-field_number {
+.text-field__number {
   .text-field {
-    &_label {
+    &__label {
       display: inline;
     }
 
-    &_input {
+    &__input {
       width: 52px;
       margin: 0 8px;
       -moz-appearance: textfield;
@@ -64,7 +64,7 @@
       }
     }
 
-    &_minutes {
+    &__minutes {
       font-size: 13px;
       color: #434445;
     }

@@ -20,7 +20,7 @@ export const Button = React.memo((props) => {
   } ${className}`;
 
   return type === 'link' ? (
-    <Link className={`button_link ${buttonClass}`} to={to}>
+    <Link className={`button__link ${buttonClass}`} to={to}>
       {children}
     </Link>
   ) : (

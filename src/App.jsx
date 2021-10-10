@@ -35,7 +35,7 @@ export const App = React.memo(() => {
       <div className="content">
         <Switch>
           <Route path="/settings">
-            <Settings showError={openModal} />
+            <Settings openModal={openModal} />
           </Route>
           <Route path="/no-settings">
             <StartPage />
@@ -49,9 +49,9 @@ export const App = React.memo(() => {
       <Footer />
 
       <Modal onClose={onClose}>
-        <TextField name="hash" className="modal_input" placeholder="Commit hash" />
+        <TextField name="hash" className="modal__input" placeholder="Commit hash" />
         <div>
-          <Button onClick={onClose} className="modal_submit">
+          <Button onClick={onClose} className="modal__submit">
             Run build
           </Button>
           <Button onClick={onClose} color="secondary">

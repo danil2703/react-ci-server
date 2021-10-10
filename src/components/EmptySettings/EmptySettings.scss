@@ -6,17 +6,14 @@
   align-items: center;
   justify-content: center;
 
-  &_message {
+  &__message {
     width: 204px;
     font-size: 13px;
     margin: 0 auto;
-  }
-
-  &_icon {
-    margin-bottom: 32px;
-  }
-
-  &_message {
     margin-bottom: 24px;
+  }
+
+  &__icon {
+    margin-bottom: 32px;
   }
 }

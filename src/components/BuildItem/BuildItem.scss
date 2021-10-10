@@ -8,53 +8,53 @@
   text-align: left;
 
   &_success {
-    .build_number {
+    .build__number {
       color: #00b341;
     }
   }
 
   &_pending {
-    .build_number {
+    .build__number {
       color: #ff9a00;
     }
   }
 
   &_error {
-    .build_number {
+    .build__number {
       color: #ff3333;
     }
   }
 
-  &_number {
+  &__number {
     font-size: 18px;
     margin-right: 4px;
     font-weight: 500;
   }
 
-  &_title {
+  &__title {
     font-size: 18px;
     font-weight: 400;
   }
 
-  &_branch {
+  &__branch {
     margin: 0 4px;
   }
 
-  &_hash {
+  &__hash {
     margin-right: 8px;
     color: #595959;
   }
 
-  &_author {
+  &__author {
     margin: 0 5px;
   }
 
-  &_date {
+  &__date {
     margin-bottom: 12px;
   }
 
-  &_date,
-  &_time {
+  &__date,
+  &__time {
     display: flex;
     align-items: center;
     font-size: 13px;
@@ -65,31 +65,31 @@
     }
   }
 
-  &_info-top-content {
+  &__info-top-content {
     margin-bottom: 8px;
   }
 
-  &_info-bottom-content {
+  &__info-bottom-content {
     font-size: 13px;
     display: flex;
     align-items: center;
   }
 
-  &_status-container {
+  &__status-container {
     margin-right: 9px;
   }
 
-  &_info-container {
+  &__info-container {
     margin-right: auto;
   }
 
-  &_date-container {
+  &__date-container {
     display: flex;
     flex-direction: column;
   }
 
-  &_info-container,
-  &_date-container {
+  &__info-container,
+  &__date-container {
     svg {
       fill: #b3b3b3;
     }
@@ -104,7 +104,7 @@
     position: relative;
     padding: 16px 36px;
 
-    &_status-container {
+    &__status-container {
       width: fit-content;
       position: absolute;
       left: 13px;
@@ -116,37 +116,37 @@
       }
     }
 
-    &_info_container,
-    &_number,
-    &_branch-container,
-    &_info-bottom-content {
+    &__info_container,
+    &__number,
+    &__branch-container,
+    &__info-bottom-content {
       width: 100%;
       margin-bottom: 8px;
     }
 
-    &_date {
+    &__date {
       margin: 0 10px 0 0;
     }
 
-    &_info-bottom-content {
+    &__info-bottom-content {
       flex-wrap: wrap;
     }
 
-    &_branch-container {
+    &__branch-container {
       display: block;
     }
 
-    &_date-container {
+    &__date-container {
       flex-direction: row;
       align-items: center;
     }
 
-    &_number {
+    &__number {
       display: block;
       font-size: 16px;
     }
 
-    &_title {
+    &__title {
       font-size: 15px;
     }
   }

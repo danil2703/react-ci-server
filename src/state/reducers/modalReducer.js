@@ -1,16 +1,14 @@
 const initialState = {
-  payload: {
-    title: '',
-    text: '',
-    type: '',
-    open: false,
-  },
+  title: '',
+  text: '',
+  type: '',
+  open: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case 'SHOW_MODAL':
-      return { payload: action.payload };
+      return action.payload;
     case 'HIDE_MODAL':
       return initialState;
     default:
