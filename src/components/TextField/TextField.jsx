@@ -18,7 +18,7 @@ export const TextField = React.memo((props) => {
 
   useEffect(() => {
     setValue(props.value || '');
-  }, []);
+  }, [props.value]);
 
   const clearInput = useCallback(() => setValue(''), []);
 

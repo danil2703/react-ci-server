@@ -24,7 +24,7 @@ export const Footer = React.memo(() => (
           </li>
         </ul>
       </nav>
-      <span className="footer_copirate">© 2020 Your Name</span>
+      <span className="footer_copirate">© 2021 Daniil Lyashenko</span>
     </div>
   </footer>
 ));
