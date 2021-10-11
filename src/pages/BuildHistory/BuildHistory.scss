@@ -1,18 +1,18 @@
 .history {
   text-align: left;
 
-  &_item {
+  &__item {
     margin-bottom: 8px;
   }
 
-  &_show-more {
+  &__show-more {
     margin-bottom: 14px;
   }
 }
 
 @media screen and (max-width: 480px) {
   .history {
-    &_show-more {
+    &__show-more {
       width: 100%;
     }
   }

@@ -54,15 +54,15 @@ export const Settings = React.memo(({ showError, setRepository }) => {
   return (
     <>
       <div className="settings container">
-        <h3 className="settings_title">Settings</h3>
-        <p className="settings_paragraph">Configure repository connection and synchronization settings.</p>
+        <h3 className="settings__title">Settings</h3>
+        <p className="settings__paragraph">Configure repository connection and synchronization settings.</p>
         <form>
           <TextField
             onChange={onChange}
             type="text"
             placeholder="user-name/repo-name"
             name="repository"
-            className="settings_input"
+            className="settings__input"
             label="GitHub repository"
             disabled={isLoading}
             required
@@ -72,7 +72,7 @@ export const Settings = React.memo(({ showError, setRepository }) => {
             type="text"
             placeholder="npm run build"
             name="buildCommand"
-            className="settings_input"
+            className="settings__input"
             label="Build command"
             disabled={isLoading}
             required
@@ -82,7 +82,7 @@ export const Settings = React.memo(({ showError, setRepository }) => {
             type="text"
             placeholder="main"
             name="mainBranch"
-            className="settings_input"
+            className="settings__input"
             label="Main branch"
             disabled={isLoading}
             required
@@ -92,7 +92,7 @@ export const Settings = React.memo(({ showError, setRepository }) => {
             type="number"
             name="synchro"
             placeholder="10"
-            className="settings_number"
+            className="settings__number"
             label="Synchronize every"
             unit="minutes"
             disabled={isLoading}
@@ -100,7 +100,7 @@ export const Settings = React.memo(({ showError, setRepository }) => {
           <Button
             onClick={onSubmit}
             disabled={!formState.repository || !formState.buildCommand || !formState.mainBranch || isLoading}
-            className="settings_button"
+            className="settings__button"
           >
             {isLoading ? <Loader /> : 'Save'}
           </Button>

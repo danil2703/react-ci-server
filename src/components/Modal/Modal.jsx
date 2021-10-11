@@ -19,9 +19,9 @@ export const Modal = React.memo((props) => {
 
   return (
     <div className="modal">
-      <div className="modal_dialog">
-        <h3 className="modal_title">{title}</h3>
-        <p className="modal_text">{text}</p>
+      <div className="modal__dialog">
+        <h3 className="modal__title">{title}</h3>
+        <p className="modal__text">{text}</p>
         {children}
       </div>
     </div>

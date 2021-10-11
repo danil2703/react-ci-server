@@ -21,10 +21,10 @@ export const BuildHistory = React.memo(() => {
   return (
     <div className="history container">
       {buildItems.map((info) => (
-        <BuildItem key={info.number} info={info} className="history_item" />
+        <BuildItem key={info.number} info={info} className="history__item" />
       ))}
       {showMoreButton && (
-        <Button className="history_show-more" onClick={showMoreData} color="secondary">
+        <Button className="history__show-more" onClick={showMoreData} color="secondary">
           Show more
         </Button>
       )}

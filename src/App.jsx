@@ -64,9 +64,9 @@ export const App = React.memo(() => {
           </Button>
         ) : (
           <>
-            <TextField onChange={onChange} name="hash" className="modal_input" placeholder="Commit hash" />
+            <TextField onChange={onChange} name="hash" className="modal__input" placeholder="Commit hash" />
             <div>
-              <Button disabled={!modalData.hash} onClick={onClose} className="modal_submit">
+              <Button disabled={!modalData.hash} onClick={onClose} className="modal__submit">
                 Run build
               </Button>
               <Button onClick={onClose} color="secondary">

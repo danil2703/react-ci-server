@@ -32,15 +32,15 @@ export const TextField = React.memo((props) => {
   );
 
   return (
-    <div className={`text-field text-field_${type} ${className}`}>
+    <div className={`text-field text-field__${type} ${className}`}>
       {label && (
-        <label className="text-field_label" htmlFor={id}>
-          {label} {required && <span className="text-field_reqire-mark"> *</span>}
+        <label className="text-field__label" htmlFor={id}>
+          {label} {required && <span className="text-field__reqire-mark"> *</span>}
         </label>
       )}
-      <input type={type} className="text-field_input" onChange={localOnChangeHandler} value={value} disabled={disabled} {...inputProps} />
-      {type === 'number' && <span className="text-field_minutes"> {unit}</span>}
-      {value && type === 'text' && <ResetIcon className={`text-field_reset ${disabled && 'disabled'}`} onClick={clearInput} />}
+      <input type={type} className="text-field__input" onChange={localOnChangeHandler} value={value} disabled={disabled} {...inputProps} />
+      {type === 'number' && <span className="text-field__minutes"> {unit}</span>}
+      {value && type === 'text' && <ResetIcon className={`text-field__reset ${disabled && 'disabled'}`} onClick={clearInput} />}
     </div>
   );
 });

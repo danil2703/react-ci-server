@@ -11,13 +11,13 @@ export const Header = React.memo((props) => {
 
   return (
     <header className={`header ${className}`}>
-      <div className="header_container container">
+      <div className="header__container container">
         <Switch>
           <Route exact path="/">
-            <h1 className="header_repository">{repository}</h1>
-            <div className="header_button-container">
+            <h1 className="header__repository">{repository}</h1>
+            <div className="header__button-container">
               <Button
-                className="header_btn header_run-build"
+                className="header__btn header__run-build"
                 onClick={() => openModal({ title: 'New build', text: 'Enter the commit hash which you want to build.' })}
                 withIcon="true"
                 size="md"
@@ -26,21 +26,21 @@ export const Header = React.memo((props) => {
                 <RunIcon />
                 Run build
               </Button>
-              <Button className="header_btn header_btn-settings" type="link" to="/settings" withIcon="true" size="sm" color="secondary">
+              <Button className="header__btn header__btn-settings" type="link" to="/settings" withIcon="true" size="sm" color="secondary">
                 <SettingsIcon />
               </Button>
             </div>
           </Route>
 
           <Route path="/no-settings">
-            <h1 className="header_link">School CI server</h1>
-            <Button className="header_btn" type="link" to="/settings" withIcon="true" size="md" color="secondary">
+            <h1 className="header__link">School CI server</h1>
+            <Button className="header__btn" type="link" to="/settings" withIcon="true" size="md" color="secondary">
               <SettingsIcon /> Settings
             </Button>
           </Route>
 
           <Route path="/settings">
-            <h1 className="header_link">School CI server</h1>
+            <h1 className="header__link">School CI server</h1>
           </Route>
         </Switch>
       </div>
