@@ -35,9 +35,8 @@
   }
 }
 
-@media screen and (max-width: 768px) {
-  .content,
-  .container {
-    width: 100%;
+@media screen and (max-width: 480px) {
+  .content {
+    min-height: calc(100vh - 128px);
   }
 }
