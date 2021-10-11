@@ -10,6 +10,10 @@ export const Modal = React.memo((props) => {
     }
   });
 
+  const modalDialogOnClick = useCallback((e) => {
+    e.stopPropagation()
+  })
+
   useEffect(() => {
     document.addEventListener('keydown', onKeydown);
     return () => document.removeEventListener('keydown', onKeydown);
@@ -18,8 +22,8 @@ export const Modal = React.memo((props) => {
   if (!visible) return null;
 
   return (
-    <div className="modal">
-      <div className="modal__dialog">
+    <div className="modal" onClick={onClose}>
+      <div className="modal__dialog" onClick={modalDialogOnClick}>
         <h3 className="modal__title">{title}</h3>
         <p className="modal__text">{text}</p>
         {children}
