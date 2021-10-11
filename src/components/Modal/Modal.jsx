@@ -15,6 +15,10 @@ export const Modal = React.memo((props) => {
     }
   });
 
+  const modalDialogOnClick = useCallback((e) => {
+    e.stopPropagation()
+  })
+
   useEffect(() => {
     document.addEventListener('keydown', onKeydown);
     return () => document.removeEventListener('keydown', onKeydown);
@@ -24,7 +28,7 @@ export const Modal = React.memo((props) => {
 
   return (
     <div className="modal" onClick={onClose}>
-      <div className="modal__dialog" onClick={(e) => e.stopPropagation()}>
+      <div className="modal__dialog" onClick={modalDialogOnClick}>
         <h3 className="modal__title">{title}</h3>
         <p className="modal__text">{text}</p>
         {type === 'error' ? (
