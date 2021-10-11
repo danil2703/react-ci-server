@@ -17,3 +17,9 @@
     margin-bottom: 32px;
   }
 }
+
+@media screen and (max-width: 480px) {
+  .empty-settings {
+    min-height: calc(100vh - 128px);
+  }
+}
